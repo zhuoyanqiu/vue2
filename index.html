@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VUE简单使用</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="num">
+    <h1>{{name}},非常帅，有{{num}}个人为他点赞！</h1>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new new Vue({
+      el: "#app",
+      data: {
+        name: "张三",
+        num: 1
+      }
+    });
+  </script>
+</body>
+
+</html>
