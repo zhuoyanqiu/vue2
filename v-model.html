@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>精通的语音：</h1>
+    <input type="checkbox" v-model="language" name="java" id="java" value="java">java<br>
+    <input type="checkbox" v-model="language" name="php" id="php" value="php">php<br>
+    <input type="checkbox" v-model="language" name="python" id="python" value="python">python<br>
+    <h1>选中了：</h1>
+    <span v-text="language.join(',')"></span>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        language: []
+      }
+    })
+  </script>
+</body>
+
+</html>

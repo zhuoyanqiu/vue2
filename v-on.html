@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-on</title>
+</head>
+
+<body>
+  <div id="app">
+    <button v-on:click="num++">点赞</button>
+    <button @click="cancel">取消</button>
+    <h1>有{{num}}个赞！</h1>
+
+    <!-- 事件修饰符 -->
+    <div style="border: 1px solid red;padding: 20px;" v-on:click="hello">
+      大DIV
+      <div style="border: 1px solid blue;padding: 20px;" @click.stop="hello">
+        小DIV <br>
+        <a href="http://www.baidu.com">去百度</a>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new new Vue({
+      el: "#app",
+      data: {
+        num: 0
+      },
+      methods: {
+        cancel() {
+          if (this.num == 0) {
+            return;
+          }
+          this.num--;
+        },
+        hello() {
+          alert("点击")
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
