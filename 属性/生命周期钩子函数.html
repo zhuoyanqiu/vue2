@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期钩子函数</title>
+</head>
+
+<body>
+  <!-- 生命周期钩子函数 -->
+  <div id="app">
+    <span id="num">{{num}}</span>
+    <button @click="add">赞！</button>
+    <h2>{{show()}},有{{num}}个人点赞</h2>
+
+  </div>
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        name: '张三',
+        num: 100
+      },
+      methods: {
+        show() {
+          return this.name;
+        },
+        add() {
+          this.num++;
+        }
+      },
+      beforeCreate() {
+        console.log("======beforeCreate 数据模型加载前=======");
+        console.log("数据模型未加载：", this.name, this.num);
+        console.log("方法未加载：", this.show());
+        console.log("html模板未加载：", document.getElementById("num").innerText);
+      },
+      created() {
+        console.log("======created 数据模型加载完成=======");
+        console.log("数据模型已加载：", this.name, this.num);
+        console.log("方法已加载：", this.show());
+        console.log("html模板未渲染：", document.getElementById("num").innerText);
+      },
+      beforeMount() {
+        console.log("======beforeMount 页面视图渲染前=======");
+        console.log("html模板未渲染：", document.getElementById("num").innerText);
+      },
+      mounted() {
+        console.log("======mounted 页面视图渲染完成=======");
+        console.log("html模板已渲染：", document.getElementById("num").innerText);
+      },
+      beforeUpdate() {
+        console.log("======beforeUpdate 页面视图更新前=======");
+        console.log("数据模型已更新：", this.num);
+        console.log("html模板未更新:", document.getElementById("num").innerText);
+      },
+      updated() {
+        console.log("======updated 页面视图更新完成=======");
+        console.log("数据模型已更新：", this.num);
+        console.log("html模板已更新:", document.getElementById("num").innerText);
+      },
+      beforeMount() {
+        console.log("======beforeMount=======");
+
+      },
+      unmounted() {
+        console.log("======unmounted=======");
+      },
+      errorCaptured() {
+        console.log("======errorCaptured=======");
+      },
+      renderTracked() {
+        console.log("======renderTracked=======");
+      },
+      renderTriggered() {
+        console.log("======renderTriggered=======");
+      },
+      activated() {
+        console.log("======activated=======");
+      },
+      deactivated() {
+        console.log("======deactivated=======");
+      }
+
+    });
+
+  </script>
+</body>
+
+</html>
