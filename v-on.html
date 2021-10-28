@@ -15,18 +15,21 @@
     <h1>有{{num}}个赞！</h1>
 
     <!-- 事件修饰符 -->
-    <div style="border: 1px solid red;padding: 20px;" v-on:click="hello">
+    <!-- .once 点击事件只会触发一次 -->
+    <div style="border: 1px solid red;padding: 20px;" v-on:click.once="hello">
       大DIV
+      <!-- 添加点击事件 & .stop 阻止事件冒泡 -->
       <div style="border: 1px solid blue;padding: 20px;" @click.stop="hello">
         小DIV <br>
-        <a href="http://www.baidu.com">去百度</a>
+        <!-- 添加点击事件 & .prevent 阻止默认行为 & .stop 阻止事件冒泡 -->
+        <a href="http://www.baidu.com" @click.prevent.stop="hello">去百度</a>
       </div>
     </div>
 
+    <!-- 按键修饰符 -->
+    <input type="text" v-model="num" v-on:keyup.up="num++" @keyup.down="num--" @click.keyup.ctrl="num=10">
 
   </div>
-
-
 
   <script src="./node_modules/vue/dist/vue.js"></script>
   <script>

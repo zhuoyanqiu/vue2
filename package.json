@@ -1,18 +1,23 @@
 {
   "name": "vue2",
   "version": "1.0.0",
-  "description": "test",
+  "description": "",
   "main": "index.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "vue": "^2.6.14"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhuoyanqiu/vue2.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "private": "false"
+  "bugs": {
+    "url": "https://github.com/zhuoyanqiu/vue2/issues"
+  },
+  "homepage": "https://github.com/zhuoyanqiu/vue2#readme",
+  "dependencies": {
+    "vue": "^2.6.14"
+  }
 }

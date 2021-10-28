@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for</title>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(user,index) in users" :key="user.name">
+        索引：{{index}} ==> {{user.name}} ==> {{user.gender}} ==> {{user.age}} <br>
+        对象信息：
+        <span v-for="(v,k,i) in user">
+          {{k}} ==> {{v}} ==> {{i}}
+        </span>
+      </li>
+    </ul>
+
+    <ul>
+      <li v-for="(number,index) in numbers" :key="index">
+        索引：{{index}} ==> {{number}}
+      </li>
+    </ul>
+
+  </div>
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    let vm = new new Vue({
+      el: "#app",
+      data: {
+        users: [
+          { name: "张三", gender: "男", age: "18" },
+          { name: "李四", gender: "女", age: "16" }
+        ],
+        numbers: [1,2,3,4,4]
+      }
+    });
+  </script>
+</body>
+
+</html>
