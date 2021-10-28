@@ -5,56 +5,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>computed计算属性&watch监听器</title>
+  <title>filters过滤器</title>
 </head>
 
 <body>
-  <div id="app">  
+  <!-- 过滤器常用来出来文本格式化的操作。可以用在两个地方：{{}} 和 v-bind表达式 -->
+  <div id="app">
     <ul>
-      <li>西游记  sdf；价格：{{xyjPrice}}，数量：<input type="number" v-model="xyjNum"></li>
-      <li>水浒传；价格：{{shzPrice}}，数量：<input type="number" v-model="shzNum"></li>
-      <li>总价：{{totalPrice}}</li>
-      {{xyjMsg}} <br>
-      {{shzMsg}}
+      <li v-for="user in userList">
+        {{user.id}} ==> {{user.name}} ==> {{user.gender | genderFilter}} ==> {{user.gender | gFilter}}
+      </li>
     </ul>
   </div>
 
   <script src="../node_modules/vue/dist/vue.js"></script>
   <script>
+
+    // 全局过滤器
+    Vue.filter('gFilter', function (val) {
+      return val == 1 ? '男~~~' : '女~~~';
+    })
+
     let vm = new Vue({
       el: "#app",
       data: {
-        xyjPrice: 99.98,
-        shzPrice: 99,
-        xyjNum: 1,
-        shzNum: 1,
-        xyjMaxNum: 3,
-        shzMaxNum: 4,
-        xyjMsg: "",
-        shzMsg: ""
+        userList: [
+          { id: 1, name: '张三', gender: 1 },
+          { id: 2, name: '李四', gender: 0 }
+        ]
       },
-      computed: {
-        totalPrice() {
-          return this.xyjPrice * this.xyjNum + this.shzPrice * this.shzNum;
-        }
-      },
-      watch: {
-        xyjNum(newVal, oldVal) {
-          console.log(newVal, "==>", oldVal);
-          if (newVal > this.xyjMaxNum) {
-            this.xyjMsg = "（西游记）数量不可超出库存,当前库存为:" + this.xyjMaxNum;
-            this.xyjNum = oldVal;
-          } else if (oldVal == this.xyjMaxNum && newVal < this.xyjMaxNum) {
-            this.xyjMsg = "";
-          }
-        },
-        shzNum(newVal, oldVal) {
-          if (newVal > this.shzMaxNum) {
-            this.shzMsg = "（水浒传）数量不可超出库存,当前库存为:" + this.shzMaxNum;
-            this.shzNum = oldVal;
-          } else if (oldVal == this.shzMaxNum && newVal < this.shzMaxNum) {
-            this.shzMsg = "";
-          }
+      filters: {
+        genderFilter(val) {
+          return val == 1 ? '男' : '女';
         }
       }
     });
