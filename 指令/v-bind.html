@@ -15,9 +15,9 @@
     <!-- v-bind对象 class和style 进行了增强 -->
     <span v-bind:class="{active:isActive,'text-danger':hasError}" :style="{color:color1,fontSize:size}">你好</span>
   </div>
-  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue/dist/vue.js"></script>
   <script>
-    let vm = new new Vue({
+    let vm = new Vue({
       el: "#app",
       data: {
         link: "http://www.baidu.com",

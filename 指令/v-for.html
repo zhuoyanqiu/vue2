@@ -11,7 +11,7 @@
 <body>
   <div id="app">
     <ul>
-      <li v-for="(user,index) in users" :key="user.name">
+      <li v-for="(user,index) in users" :key="user.name" v-if="user.gender=='女'">
         索引：{{index}} ==> {{user.name}} ==> {{user.gender}} ==> {{user.age}} <br>
         对象信息：
         <span v-for="(v,k,i) in user">
@@ -28,9 +28,9 @@
 
   </div>
 
-  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="../node_modules/vue/dist/vue.js"></script>
   <script>
-    let vm = new new Vue({
+    let vm = new Vue({
       el: "#app",
       data: {
         users: [
