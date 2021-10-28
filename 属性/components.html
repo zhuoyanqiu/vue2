@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>components组件封装</title>
+</head>
+
+<body>
+  <!-- components组件封装 -->
+  <div id="app">
+    <button @click="count++">我被点击了{{count}}次</button>
+
+    <!-- 局部组件使用 -->
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+
+    <counter></counter> <!-- 全局组件可用 -->
+
+  </div>
+
+  <div id="buttonCounter">
+    <!-- 全局组件使用 -->
+    <counter></counter>
+    <counter></counter>
+    <button-counter></button-counter> <!-- 局部组件不可用，会报错 -->
+  </div>
+
+  <counter></counter> <!-- 不会显示 -->
+
+
+  <script src="../node_modules/vue/dist/vue.js"></script>
+  <script>
+
+
+    /* 全局声明一个组件 */
+    Vue.component("counter", {
+      template: `<button @click="count++">我被点击了{{count}}次~~</button>`,
+      data() {
+        return {
+          count: 0
+        }
+      }
+    });
+
+    /* 局部声明一个组件 */
+    const buttonCounter = {
+      template: `<button @click="count++">我被点击了{{count}}次</button>`,
+      data() {
+        return {
+          count: 0
+        }
+      }
+    }
+
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        count: 0
+      },
+      components: {
+        "button-counter": buttonCounter
+      }
+    });
+
+    new Vue({
+      el: "#buttonCounter"
+    });
+
+  </script>
+</body>
+
+</html>
